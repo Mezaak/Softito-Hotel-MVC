@@ -9,7 +9,8 @@
 
 ## About The Project
 
-Hotel project, users can register login, book a room, admins can add new rooms, edit rooms.
+A Hotel website project. We can make crud operations in this project <br> for example users can register login,
+book a room, admins can add new rooms, edit rooms. 
 
 ## Project Images 
 
