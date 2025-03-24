@@ -1,0 +1,12 @@
+C:\Users\deniz\Hotels\Entity\bin\Debug\Entity.dll.config
+C:\Users\deniz\Hotels\Entity\bin\Debug\Entity.dll
+C:\Users\deniz\Hotels\Entity\bin\Debug\Entity.pdb
+C:\Users\deniz\Hotels\Entity\bin\Debug\EntityFramework.dll
+C:\Users\deniz\Hotels\Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\deniz\Hotels\Entity\bin\Debug\EntityFramework.xml
+C:\Users\deniz\Hotels\Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\deniz\Hotels\Entity\obj\Debug\Entity.csproj.AssemblyReference.cache
+C:\Users\deniz\Hotels\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+C:\Users\deniz\Hotels\Entity\obj\Debug\Entity.csproj.Up2Date
+C:\Users\deniz\Hotels\Entity\obj\Debug\Entity.dll
+C:\Users\deniz\Hotels\Entity\obj\Debug\Entity.pdb

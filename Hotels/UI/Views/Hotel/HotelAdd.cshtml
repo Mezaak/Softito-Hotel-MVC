@@ -1,0 +1,59 @@
+﻿@model Entity.Concreate.Hotel
+@{
+    ViewBag.Title = "HotelAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-lg font-bold">Admin Paneli</div>
+            <div class="space-x-4">
+                <a href="@Url.Action("UserListIndex", "Hotel")" class="text-blue-600 hover:underline">Kullanıcıları Yönet</a>
+                <a href="@Url.Action("HotelAdd", "Hotel")" class="text-blue-600 hover:underline">Otel Ekle</a>
+                <a href="@Url.Action("ReservationIndex", "Hotel")" class="text-blue-600 hover:underline">Rezervasyonları Yönet</a>
+                <a href="@Url.Action("Logout", "Hotel")" class="text-red-600 hover:underline">Çıkış Yap</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex justify-center items-start min-h-screen pt-10 bg-gray-900 text-white">
+        <div class="w-full max-w-md p-6 shadow-md rounded-lg bg-gray-800">
+            <!-- Başlık Ekle -->
+            <h2 class="text-2xl font-semibold text-center text-white mb-6">Hotel Ekle</h2>
+
+            @using (Html.BeginForm("HotelAdd", "Hotel", FormMethod.Post))
+            {
+                <div class="space-y-4">
+                    <div class="form-group">
+                        @Html.Label("Hotel Adı", new { @class = "block text-sm font-medium text-white" })
+                        @Html.TextBoxFor(x => x.HotelTopic, new { @class = "mt-1 p-2 w-full border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-900" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hotel fiyatı", new { @class = "block text-sm font-medium text-white" })
+                        @Html.TextBoxFor(x => x.HotelPrice, new { @class = "mt-1 p-2 w-full border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-900" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hotel Fotosu", new { @class = "block text-sm font-medium text-white" })
+                        @Html.TextBoxFor(x => x.HotelPhoto, new { @class = "mt-1 p-2 w-full border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-900" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hotel Açıklaması", new { @class = "block text-sm font-medium text-white" })
+                        @Html.TextBoxFor(x => x.HotelDescription, new { @class = "mt-1 p-2 w-full border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-900" })
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md text-sm">Kaydet</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</div>

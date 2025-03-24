@@ -1,0 +1,73 @@
+﻿
+@model IEnumerable<Entity.Concreate.Order>
+@{
+    ViewBag.Title = "ReservationIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-lg font-bold">Admin Paneli</div>
+            <div class="space-x-4">
+                <a href="@Url.Action("UserListIndex", "Hotel")" class="text-blue-600 hover:underline">Kullanıcıları Yönet</a>
+                <a href="@Url.Action("HotelAdd", "Hotel")" class="text-blue-600 hover:underline">Otel Ekle</a>
+                <a href="@Url.Action("ReservationIndex", "Hotel")" class="text-blue-600 hover:underline">Rezervasyonları Yönet</a>
+                <a href="@Url.Action("Logout", "Hotel")" class="text-red-600 hover:underline">Çıkış Yap</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+
+        <table class="w-full border-collapse border border-gray-300 shadow-lg rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-gray-800 text-white">
+                    <th class="p-3 text-left">#</th>
+                    <th class="p-3 text-left">Ad</th>
+                    <th class="p-3 text-left">Soyad</th>
+                    <th class="p-3 text-left">Email</th>
+                    <th class="p-3 text-left">Otel</th>
+                    <th class="p-3 text-left">Check-in</th>
+                    <th class="p-3 text-left">Check-out</th>
+                    <th class="p-3 text-center">Yetişkin Sayısı</th>
+                    <th class="p-3 text-center">Çocuk Sayısı</th>
+                    <th class="p-3 text-center">İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr class="border-b border-gray-200 hover:bg-gray-800 transition">
+                        <td class="p-3">@order.OrderId</td>
+                        <td class="p-3">@order.FirstName</td>
+                        <td class="p-3">@order.LastName</td>
+                        <td class="p-3">@order.Email</td>
+                        <td class="p-3">@order.Hotel.HotelTopic</td>
+                        <td class="p-3">@order.CheckInDate.ToString("yyyy-MM-dd")</td>
+                        <td class="p-3">@order.CheckOutDate.ToString("yyyy-MM-dd")</td>
+                        <td class="p-3 text-center">@order.AdultCount</td>
+                        <td class="p-3 text-center">@order.KidCount</td>
+                        <td class="p-3 text-center">
+                            <form action="@Url.Action("Reservation", "Hotel")" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@order.OrderId" />
+                                <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition" onclick="return confirm('Bu rezervasyonu silmek istediğinizden emin misiniz?')">
+                                    Sil
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+
+   

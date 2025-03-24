@@ -1,0 +1,38 @@
+﻿@using Entity.Concreate
+@model List<Customer>
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gray-100 flex items-center justify-center h-screen">
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="bg-red-500 text-white p-2 mb-4 rounded-md text-center">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Giriş Yap</h2>
+        <form method="post" action="@Url.Action("Login", "Hotel")">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Kullanıcı Adı</label>
+                <input type="text" id="username" name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-gray-700">Şifre</label>
+                <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Giriş Yap</button>
+        </form>
+        <div class="text-center mt-4">
+            <a href="/Hotel/Register" class="text-blue-600 hover:underline">Yeni Hesap Oluştur</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

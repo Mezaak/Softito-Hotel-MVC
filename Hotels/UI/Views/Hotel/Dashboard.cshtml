@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-lg font-bold">Admin Paneli</div>
+            <div class="space-x-4">
+                <a href="@Url.Action("UserListIndex", "Hotel")" class="text-blue-600 hover:underline">Kullanıcıları Yönet</a>
+                <a href="@Url.Action("HotelAdd", "Hotel")" class="text-blue-600 hover:underline">Otel Ekle</a>
+                <a href="@Url.Action("ReservationIndex", "Hotel")" class="text-blue-600 hover:underline">Rezervasyonları Yönet</a>
+                <a href="@Url.Action("Logout", "Hotel")" class="text-red-600 hover:underline">Çıkış Yap</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+        <h1 class="text-3xl font-bold mb-4">Hoşgeldiniz!</h1>
+        <p>Admin paneline hoşgeldiniz. Lütfen yukarıdaki menüden bir seçenek seçin.</p>
+    </div>
+</div>
+
+
+    
+    

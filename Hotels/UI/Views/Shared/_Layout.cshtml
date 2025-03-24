@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ROYAL HOTEL</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/hotelweb/img/favicon.ico" rel="icon">
+    <link href="~/hotelweb/img/apple-favicon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Vendor CSS File -->
+    <link href="~/hotelweb/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/hotelweb/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/hotelweb/vendor/animate/animate.min.css" rel="stylesheet">
+    <link href="~/hotelweb/vendor/slick/slick.css" rel="stylesheet">
+    <link href="~/hotelweb/vendor/slick/slick-theme.css" rel="stylesheet">
+    <link href="~/hotelweb/vendor/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Main Stylesheet File -->
+    <link href="~/hotelweb/css/hover-style.css" rel="stylesheet">
+    <link href="~/hotelweb/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header Section Start -->
+    <header id="header" class="h-[90px] flex items-center justify-between px-6 bg-gray-800 text-white">
+        <!-- Logo -->
+        <a href="/Hotel/Index" class="logo">
+            <img src="~/hotelweb/img/logo.jpg" alt="logo" class="h-12">
+        </a>
+
+        <!-- Menü (Büyük Ekranlar İçin) -->
+        <nav class="hidden md:flex items-center gap-6 justify-center flex-grow">
+            <a href="/Hotel/Index" class="text-yellow-500 hover:text-white">Anasayfa</a>
+            <a href="/Hotel/About" class="text-yellow-500 hover:text-white">Hakkımızda</a>
+            <a href="/Hotel/Rooms" class="text-yellow-500 hover:text-white">Otellerimiz</a>
+            <a href="/Hotel/Amenities" class="text-yellow-500 hover:text-white">Hizmetlerimiz</a>
+            <a href="/Hotel/Booking" class="text-yellow-500 hover:text-white">Rezervasyon</a>
+            <a href="/Hotel/Contact" class="text-yellow-500 hover:text-white">İletişim</a>
+        </nav>
+
+        <!-- Kullanıcı Bilgisi ve Çıkış Butonu -->
+        <div class="flex items-center gap-4">
+            @if (Session["UserID"] != null)
+            {
+                <a href="@Url.Action("Logout", "Hotel")"
+                   class="text-red-400 hover:text-red-600 font-semibold transition-colors duration-200">
+                    Çıkış Yap
+                </a>
+
+                <div class="flex items-center gap-2 text-gray-300">
+                    <a href="/Hotel/Dashboard"><i class="fa fa-user text-gray-400 text-lg"></i></a>
+                    <span class="font-medium"><a class="text-gray-300 hover:text-gray-300" href="/Hotel/Dashboard">@Session["Username"]</a></span>
+                </div>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Hotel")"
+                   class="text-blue-400 hover:text-blue-600 font-semibold transition-colors duration-200">
+                    Giriş Yap
+                </a>
+            }
+        </div>
+
+        <!-- Mobil Menü Butonu -->
+        <button class="md:hidden text-white text-2xl">
+            <i class="fa fa-bars"></i>
+        </button>
+    </header>
+    <!-- Header Section End -->
+    @RenderBody()
+    <!-- Footer Section Start -->
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="social">
+                        <a href=""><li class="fa fa-instagram"></li></a>
+                        <a href=""><li class="fa fa-twitter"></li></a>
+                        <a href=""><li class="fa fa-facebook-f"></li></a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p>Copyright &#169; 2025 Elegance Hotel bütün hakları saklıdır.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Vendor JavaScript File -->
+    <script src="~/hotelweb/vendor/jquery/jquery.min.js"></script>
+    <script src="~/hotelweb/vendor/jquery/jquery-migrate.min.js"></script>
+    <script src="~/hotelweb/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/hotelweb/vendor/easing/easing.min.js"></script>
+    <script src="~/hotelweb/vendor/stickyjs/sticky.js"></script>
+    <script src="~/hotelweb/vendor/superfish/hoverIntent.js"></script>
+    <script src="~/hotelweb/vendor/superfish/superfish.min.js"></script>
+    <script src="~/hotelweb/vendor/wow/wow.min.js"></script>
+    <script src="~/hotelweb/vendor/slick/slick.min.js"></script>
+    <script src="~/hotelweb/vendor/tempusdominus/js/moment.min.js"></script>
+    <script src="~/hotelweb/vendor/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/hotelweb/vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+    <!-- Main Javascript File -->
+    <script src="~/hotelweb/js/main.js"></script>
+</body>
+</html>

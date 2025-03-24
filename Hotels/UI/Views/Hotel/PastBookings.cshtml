@@ -1,0 +1,21 @@
+﻿@model Entity.Concreate.Order
+@{
+    ViewBag.Title = "PastBookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PastBookings</h2>
+
+@foreach (var booking in Model)
+{
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Otel:</strong> @booking.Hotel.HotelTopic</li>
+        <li class="list-group-item"><strong>İsim:</strong> @booking.FirstName @booking.LastName</li>
+        <li class="list-group-item"><strong>Telefon:</strong> @booking.Phone</li>
+        <li class="list-group-item"><strong>Email:</strong> @booking.Email</li>
+        <li class="list-group-item"><strong>Check-In:</strong> @booking.CheckInDate?.ToString("yyyy-MM-dd")</li>
+        <li class="list-group-item"><strong>Check-Out:</strong> @booking.CheckOutDate?.ToString("yyyy-MM-dd")</li>
+        <li class="list-group-item"><strong>Yetişkin Sayısı:</strong> @booking.AdultCount</li>
+        <li class="list-group-item"><strong>Çocuk Sayısı:</strong> @booking.KidCount</li>
+    </ul>
+}

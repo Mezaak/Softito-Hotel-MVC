@@ -1,0 +1,71 @@
+﻿@using Entity.Concreate
+@model List<Hotel>
+
+@{
+    ViewBag.Title = "Rooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Room Section Start -->
+<div id="rooms">
+    <div class="container">
+        <div class="section-header">
+            <h2>Otellerimiz</h2>
+
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="room-img">
+                                    <div class="box12">
+                                        <img src="@item.HotelPhoto">
+                                        <div class="box-content">
+                                            <h3 class="title">@item.HotelTopic</h3>
+                                            <ul class="icon">
+                                                <li><a href="#" data-toggle="modal" data-target="#modal-id"><i class="fa fa-link"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="room-des">
+                                    <h3><a href="#" data-toggle="modal" data-target="#modal-id">@item.HotelTopic</a></h3>
+                                    <p>@item.HotelDescription</p>
+
+                                    <ul class="room-icon">
+                                        <li class="icon-1"></li>
+                                        <li class="icon-2"></li>
+                                        <li class="icon-3"></li>
+                                        <li class="icon-4"></li>
+                                        <li class="icon-5"></li>
+                                        <li class="icon-6"></li>
+                                        <li class="icon-7"></li>
+                                        <li class="icon-8"></li>
+                                        <li class="icon-9"></li>
+                                        <li class="icon-10"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="room-rate">
+
+                                    <h1>@item.HotelPrice₺</h1>
+                                    <a href="/Hotel/Booking">Odayı Tut</a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                  
+                    </div>
+                </div>
+             </p>
+        }
+    </div>
+</div>
+<!-- Room Section End -->

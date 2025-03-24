@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Entity.Concreate.Customer>
+@{
+    ViewBag.Title = "UserListIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-gray-900 text-white min-h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-lg font-bold">Admin Paneli</div>
+            <div class="space-x-4">
+                <a href="@Url.Action("UserListIndex", "Hotel")" class="text-blue-600 hover:underline">Kullanıcıları Yönet</a>
+                <a href="@Url.Action("HotelAdd", "Hotel")" class="text-blue-600 hover:underline">Otel Ekle</a>
+                <a href="@Url.Action("ReservationIndex", "Hotel")" class="text-blue-600 hover:underline">Rezervasyonları Yönet</a>
+                <a href="@Url.Action("Logout", "Hotel")" class="text-red-600 hover:underline">Çıkış Yap</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+
+        <table class="min-w-full border-collapse bg-gray-900 text-white shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-gray-800 text-white text-left">
+                    <th class="py-3 px-6">#</th>
+                    <th class="py-3 px-6">Ad</th>
+                    <th class="py-3 px-6">Soyad</th>
+                    <th class="py-3 px-6">Email</th>
+                    <th class="py-3 px-6">Telefon</th>
+                    <th class="py-3 px-6">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="border-b border-gray-700 hover:bg-gray-800 transition">
+                        <td class="py-3 px-6">@user.CustomerId</td>
+                        <td class="py-3 px-6">@user.FirstName</td>
+                        <td class="py-3 px-6">@user.LastName</td>
+                        <td class="py-3 px-6">@user.Email</td>
+                        <td class="py-3 px-6">@user.Phone</td>
+                        <td class="py-3 px-6">
+                            <form action="@Url.Action("UserListDelete", "Hotel")" method="post" class="inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@user.CustomerId" />
+                                <button type="submit" onclick="return confirm('Bu rezervasyonu silmek istediğinizden emin misiniz?')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                                    Sil
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+    

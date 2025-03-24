@@ -1,0 +1,72 @@
+﻿@model Entity.Concreate.Customer
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<@*body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Yeni Hesap Oluştur</h2>
+        <form>
+            <div class="mb-4">
+                <label for="new-username" class="block text-sm font-medium text-gray-700">Kullanıcı Adı</label>
+                <input type="text" id="new-username" name="new-username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="mb-4">
+                <label for="full-name" class="block text-sm font-medium text-gray-700">Ad Soyad</label>
+                <input type="text" id="full-name" name="full-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-sm font-medium text-gray-700">Telefon Numarası</label>
+                <input type="tel" id="phone" name="phone" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="mb-4">
+                <label for="new-password" class="block text-sm font-medium text-gray-700">Şifre</label>
+                <input type="password" id="new-password" name="new-password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block text-sm font-medium text-gray-700">E-posta</label>
+                <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Hesap Oluştur</button>
+        </form>
+    </div>
+</body>*@ @using (Html.BeginForm("Register", "Hotel", FormMethod.Post)) { @Html.AntiForgeryToken()  @Html.ValidationSummary(true, "", new { @class = "text-red-500 mb-4" })  <div class="mb-4">
+                @Html.LabelFor(m => m.Username, "Kullanıcı Adı", new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.TextBoxFor(m => m.Username, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-red-500" })
+            </div>
+
+            <div class="mb-1">
+                @Html.LabelFor(m => m.FirstName, "Ad ", new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-red-500" })
+            </div>
+
+            <div class="mb-1">
+         @Html.LabelFor(m => m.LastName, "SoyAd ", new { @class = "block text-sm font-medium text-gray-700" })
+         @Html.TextBoxFor(m => m.LastName, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+         @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-red-500" })
+           </div>
+
+            <div class="mb-1">
+                @Html.LabelFor(m => m.Phone, "Telefon Numarası", new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.TextBoxFor(m => m.Phone, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-red-500" })
+            </div>
+
+            <div class="mb-4">
+                @Html.LabelFor(m => m.Password, "Şifre", new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.PasswordFor(m => m.Password, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-red-500" })
+            </div>
+
+            <div class="mb-1">
+                @Html.LabelFor(m => m.Email, "E-posta", new { @class = "block text-sm font-medium text-gray-700" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-red-500" })
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Hesap Oluştur</button>
+        }
+

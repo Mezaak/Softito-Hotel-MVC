@@ -1,0 +1,178 @@
+﻿@model Entity.Concreate.Order
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Booking Section Start -->
+<script>
+    //window.onload = function () {
+    //    document.getElementsByClassName("root").value = "";
+    //    document.getElementsByClassName("root").value = "";
+    //    document.getElementsByClassName("root").value = "";
+    //    document.getElementsByClassName("root").value = "";
+    //    document.getElementsByClassName("root").value = "";
+    //    document.getElementsByClassName("root").value = "";
+    //};
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            // .root class'ına sahip öğelerin value değerlerini temizle
+            document.querySelectorAll(".root").forEach(function (element) {
+                console.log(element);  // Öğeleri kontrol et
+
+                if (element.value !== undefined) {
+                    element.value = ""; // input, textarea gibi öğelerin value değerini sıfırla
+                }
+            });
+        }, 100);
+        function updateSummary() {
+            // Kullanıcının seçtiği otel ismini güncelle
+            document.querySelector(".root").textContent = "";
+            var selectedHotel = document.querySelector("[name='HotelId']");
+            document.getElementById("otel").innerText = selectedHotel.selectedOptions[0]?.text || "";
+
+            // Textbox'lardaki değerleri al ve sipariş özetine yansıt
+            document.getElementById("isim").innerText = document.getElementById("First").value || "-";
+            document.getElementById("soy").innerText = document.getElementById("Last").value || "-";
+            document.getElementById("phone").innerText = document.getElementById("Tel").value || "-";
+            document.getElementById("mail").innerText = document.getElementById("Mail").value || "-";
+            document.getElementById("in1").innerText = document.getElementById("in").value || "-";
+            document.getElementById("out1").innerText = document.getElementById("out").value || "-";
+            document.getElementById("ad1").innerText = document.getElementById("ad").value || "0";
+            document.getElementById("kid1").innerText = document.getElementById("kid").value || "0";
+
+        }
+
+        // Formdaki tüm input ve select alanlarını takip et
+        document.querySelectorAll("input, select").forEach(function (element) {
+            element.addEventListener("input", updateSummary);
+        });
+
+        // Sayfa yüklendiğinde sipariş özetini temizle
+        updateSummary();
+
+    });
+</script>
+
+<div id="booking">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Otel Rezervasyonu</h2>
+            <p>Bu alandan rezervasyonunuzu yapabilirsiniz</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="booking-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" method="post" novalidate="novalidate">
+                        <!-- Otel Seçimi Dropdown -->
+                        <div class="form-row">
+                            <div class="control-group col-md-12">
+                                <label>Otel Seçiniz</label>
+                                <select class="custom-select form-control" name="HotelId" required="required">
+                                    <option value="">Otel Seçiniz</option>
+                                    @foreach (var hotel in ViewBag.Hotels as SelectList)
+                                    {
+                                        <option value="@hotel.Value" @(Model.HotelId == Convert.ToInt32(hotel.Value) ? "selected" : "")>
+                                            @hotel.Text
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- İsim, Soyisim ve Diğer Form Alanları -->
+                        <div class="form-row">
+                            <div class="control-group col-md-6">
+                                <label>İsim</label>
+                                <input type="text" id="First" class="form-control root" name="FirstName" placeholder="Örn. Mehmet Rafii" required="required"
+                                       value="@Model.FirstName" />
+                            </div>
+                            <div class="control-group col-md-6">
+                                <label>Soyisim</label>
+                                <input type="text" id="Last" class="form-control root" name="LastName" placeholder="Örn. Akkuş" required="required"
+                                       value="@Model.LastName" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="control-group col-md-6">
+                                <label>Telefon Numarası</label>
+                                <input type="text" id="Tel" class="form-control root" name="Phone" placeholder="Örn. +90 555 656 4876" required="required"
+                                       value="@Model.Phone" />
+                            </div>
+                            <div class="control-group col-md-6">
+                                <label>Email</label>
+                                <input type="email" id="Mail" class="form-control root" name="Email" placeholder="Örn. email@gmail.com" required="required"
+                                       value="@Model.Email" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="control-group col-md-6">
+                                <label>Check-In Tarihi</label>
+                                <input type="date" id="in" class="form-control root" name="CheckInDate" required="required"
+                                       value="@Model.CheckInDate?.ToString(" yyyy-MM-dd")" />
+                            </div>
+                            <div class="control-group col-md-6">
+                                <label>Check-Out Tarihi</label>
+                                <input type="date" id="out" class="form-control root " name="CheckOutDate" required="required"
+                                       value="@Model.CheckOutDate?.ToString(" yyyy-MM-dd")" />
+                            </div>
+                        </div>
+
+                        <!-- Yetişkin ve Çocuk Sayısı -->
+                        <div class="form-row">
+                            <div class="control-group col-md-6">
+                                <label>Yetişkin Sayısı</label>
+                                <select class="custom-select form-control root" name="AdultCount" id="ad">
+                                    @for (int i = 0; i <= 10; i++)
+                                    {
+                                        <option value="@i" @(Model.AdultCount == i ? "selected" : "")>@i</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="control-group col-md-6">
+                                <label>Çocuk Sayısı</label>
+                                <select class="custom-select form-control root" name="KidCount" id="kid">
+                                    @for (int i = 0; i <= 10; i++)
+                                    {
+                                        <option value="@i" @(Model.KidCount == i ? "selected" : "")>@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-row flex justify-center">
+                            <button type="submit" class="btn btn-primary">Rezervasyonu Tamamla</button>
+                        </div>
+
+                    </form>
+                    <br />
+                    @*-----------------------------sipariş özet başlangıç------------------*@
+                    <div class="flex justify-center items-center">
+                        <div class="w-full max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+                            <h3 class="text-center text-xl font-semibold mb-6">Sipariş Özeti</h3>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between"><strong>Otel:</strong> <div id="otel">-</div></li>
+                                <li class="flex justify-between"><strong>İsim:</strong> <div id="isim">-</div></li>
+                                <li class="flex justify-between"><strong>Soyisim:</strong> <div id="soy">-</div></li>
+                                <li class="flex justify-between"><strong>Telefon:</strong> <div id="phone">-</div></li>
+                                <li class="flex justify-between"><strong>Email:</strong> <div id="mail">-</div></li>
+                                <li class="flex justify-between"><strong>Check-In:</strong> <div id="in1">-</div></li>
+                                <li class="flex justify-between"><strong>Check-Out:</strong> <div id="out1">-</div></li>
+                                <li class="flex justify-between"><strong>Yetişkin Sayısı:</strong> <div id="ad1">0</div></li>
+                                <li class="flex justify-between"><strong>Çocuk Sayısı:</strong> <div id="kid1">0</div></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    @*-------------------------sipariş özet bitiş---------------------------------*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking Section End -->
